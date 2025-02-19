@@ -14,7 +14,16 @@ It's a simple API made with :
 $ npm install
 ```
 
+
 ## Compile and run the project
+
+To start the database container :
+
+```bash 
+$ docker compose up
+```
+
+To start the API :
 
 ```bash
 # development

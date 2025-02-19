@@ -13,19 +13,40 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-// model User {
-//   id Int @id @default(autoincrement())
-//   creationDate DateTime @updatedAt
-
-//   username String @unique
-//   email String @unique
-//   oldPassword String
-// }
+// ---------------------------------
 
 
-model Test {
-  id Int @id @default(autoincrement())
-  name String @unique
-  description String?
+model User {
+  id            String    @id @default(uuid())
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  username      String    @unique
+  email         String    @unique
+  password      String
+
+  servers ServerMember[] 
+}
+
+model ServerMember {
+  id            String    @id @default(uuid())
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  userId        String
+  serverId      String
+
+  user  User  @relation(fields: [userId], references: [id])
+  server  Server  @relation(fields: [serverId], references: [id])
+}
+
+model Server {
+  id            String    @id @default(uuid())
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  serverName    String
+  serverColor   String
+
+  serverMembers ServerMember[] 
 }
