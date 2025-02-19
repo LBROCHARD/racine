@@ -2,6 +2,7 @@ import {CanActivate, ExecutionContext, Injectable, UnauthorizedException } from 
 import { JwtService } from '@nestjs/jwt';
 import { jwtConstants } from '../../constants/auth.constants';
 import { Request } from 'express';
+import { userInfo } from 'os';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -24,7 +25,7 @@ export class AuthGuard implements CanActivate {
             );
 
             // We're assigning the payload to the request object here so that we can access it in our route handlers
-            request['user'] = payload;
+            request['user'] = {id: payload.sub, username: payload.username, iat: payload.iat, exp: payload.exp};
         } catch {
             throw new UnauthorizedException();
         }

@@ -25,7 +25,8 @@ model User {
   email         String    @unique
   password      String
 
-  servers ServerMember[] 
+  servers ServerMember[]
+  serversCreated Server[]
 }
 
 model ServerMember {
@@ -45,8 +46,12 @@ model Server {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
+  creatorId     String
+
   serverName    String
   serverColor   String
 
   serverMembers ServerMember[] 
+
+  user  User  @relation(fields: [creatorId], references: [id])
 }
