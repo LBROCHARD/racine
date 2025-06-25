@@ -12,8 +12,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      
-      - run: npm i 
+
+      - name: Install packages
+        run: npm i 
+
+      - name: Launch docker db
+        run: docker compose up
+        
       - run: npx prisma generate
       - run: npx prisma migrate dev
       - name: Echo okay
