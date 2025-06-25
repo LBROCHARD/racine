@@ -19,10 +19,10 @@ jobs:
       - name: Create a .env
         run: | 
           touch .env
-          echo "DATABASE_URL="${{ secrets.DATABASE_URL }}" >> .env
-          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env
-          echo "POSTGRES_USER=${{ secrets.POSTGRES_DB }} >> .env
-          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_DB }} >> .env
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
+          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
+          echo "POSTGRES_USER=${{ secrets.POSTGRES_DB }}" >> .env
+          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_DB }}" >> .env
 
       - name: Launch docker db
         run: docker compose up
