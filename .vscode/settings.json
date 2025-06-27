@@ -18,5 +18,6 @@
         "titleBar.inactiveBackground": "#3fa76599",
         "titleBar.inactiveForeground": "#15202b99"
     },
-    "peacock.color": "3fa765"
+    "peacock.color": "3fa765",
+    "idf.pythonInstallPath": "/usr/bin/python"
 }
