@@ -35,9 +35,9 @@ export class ServerController {
 
     @UseGuards(AuthGuard)
     @Post()
-    deleteServer(@Request() req, @Body() createServerDto: CreateServerDto) {
+    deleteServer(@Request() req) {
         try {
-            return this.serverService.deleteServerFromId(req.user.id);
+            return this.serverService.deleteServerFromId(req.server.id);
         } catch (error) {
             if (error instanceof HttpException) {
                 throw error;

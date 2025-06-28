@@ -15,7 +15,7 @@ describe('ServerController', () => {
   const mockServerService = {
     getAllServerFromUserId: jest.fn(() => []),
     createServer: jest.fn((userId, createServerDto) => ({ id: 'newServerId', ...createServerDto })),
-    deleteServerFromId: jest.fn((userId) => ({ message: 'Server deleted successfully' })),
+    deleteServerFromId: jest.fn((ServerId) => ({ message: 'Server deleted successfully' })),
   };
 
   class MockAuthGuard implements CanActivate {
@@ -23,8 +23,6 @@ describe('ServerController', () => {
   }
 
   beforeEach(async () => {
-    const authGuardMock: CanActivate = { canActivate: jest.fn(() => true) };
-
     const module: TestingModule = await Test.createTestingModule({
       controllers: [ServerController],
       providers: [
@@ -45,10 +43,24 @@ describe('ServerController', () => {
     expect(controller).toBeDefined();
   });
 
-  // describe('getMyServers', () => {
-  //   it('should return a list of all servers associated', () => {
-  //     controller.getMyServers(requestMock);
-  //   });
-  // });
+  it('should call getMyServers with the right id when using GET on /server', async () => {
+    const reqMock = { user: { id: 'someUserId' } } as any; 
+    await controller.getMyServers(reqMock);
+    expect(mockServerService.getAllServerFromUserId).toHaveBeenCalledWith('someUserId');
+  });
+
+  it('should call createServer with the right id and info when using POST on /server', async () => {
+    const reqMock = { user: { id: 'someUserId' } } as any;
+    const createDto = { name: 'Test Server', description: 'A server for testing' };
+    await controller.createServer(reqMock, createDto as any);
+    expect(mockServerService.createServer).toHaveBeenCalledWith('someUserId', createDto);
+  });
+
+  it('should call deleteServer using POST on /server', async () => {
+    const reqMock = { server: { id: 'someServerId' } } as any;
+    const deleteDto = { id: 'serverIdToDelete' }; 
+    await controller.deleteServer(reqMock);
+    expect(mockServerService.deleteServerFromId).toHaveBeenCalledWith('someServerId');
+  });
 
 });

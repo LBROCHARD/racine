@@ -7,7 +7,20 @@ on :
       - dev
 
 jobs:
-  deploy:
+
+  build:
+    name: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - run: npm run build
+
+  test:
+    name: test
+    needs: [build]
+
     runs-on: ubuntu-latest
 
     steps:
@@ -26,6 +39,8 @@ jobs:
 
       - name: Launch docker db
         run: docker compose up
-        
-      - run: npx prisma generate
-      - run: npx prisma migrate dev
+
+      - name: Generate Prisma  
+        run: | 
+          npx prisma generate
+          npx prisma migrate dev
