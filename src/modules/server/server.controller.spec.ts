@@ -1,21 +1,21 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthGuard } from '../auth/auth.guard';
 import { ServerController } from './server.controller';
-import { APP_GUARD } from '@nestjs/core';
 import { ServerService } from './server.service';
 import { CanActivate } from '@nestjs/common';
 
 describe('ServerController', () => {
   let controller: ServerController;
 
-  const requestMock = {
-    querry: {},
-  } as unknown as Request;
-
   const mockServerService = {
     getAllServerFromUserId: jest.fn(() => []),
-    createServer: jest.fn((userId, createServerDto) => ({ id: 'newServerId', ...createServerDto })),
-    deleteServerFromId: jest.fn((ServerId) => ({ message: 'Server deleted successfully' })),
+    createServer: jest.fn((userId, createServerDto) => ({
+      id: 'newServerId',
+      ...createServerDto,
+    })),
+    deleteServerFromId: jest.fn(() => ({
+      message: 'Server deleted successfully',
+    })),
   };
 
   class MockAuthGuard implements CanActivate {
@@ -32,35 +32,43 @@ describe('ServerController', () => {
         },
       ],
     })
-      .overrideGuard(AuthGuard).useClass(MockAuthGuard)
+      .overrideGuard(AuthGuard)
+      .useClass(MockAuthGuard)
       .compile();
 
     controller = module.get<ServerController>(ServerController);
   });
 
-  
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
 
   it('should call getMyServers with the right id when using GET on /server', async () => {
-    const reqMock = { user: { id: 'someUserId' } } as any; 
+    const reqMock = { user: { id: 'someUserId' } } as any;
     await controller.getMyServers(reqMock);
-    expect(mockServerService.getAllServerFromUserId).toHaveBeenCalledWith('someUserId');
+    expect(mockServerService.getAllServerFromUserId).toHaveBeenCalledWith(
+      'someUserId',
+    );
   });
 
   it('should call createServer with the right id and info when using POST on /server', async () => {
     const reqMock = { user: { id: 'someUserId' } } as any;
-    const createDto = { name: 'Test Server', description: 'A server for testing' };
+    const createDto = {
+      name: 'Test Server',
+      description: 'A server for testing',
+    };
     await controller.createServer(reqMock, createDto as any);
-    expect(mockServerService.createServer).toHaveBeenCalledWith('someUserId', createDto);
+    expect(mockServerService.createServer).toHaveBeenCalledWith(
+      'someUserId',
+      createDto,
+    );
   });
 
   it('should call deleteServer using POST on /server', async () => {
     const reqMock = { server: { id: 'someServerId' } } as any;
-    const deleteDto = { id: 'serverIdToDelete' }; 
     await controller.deleteServer(reqMock);
-    expect(mockServerService.deleteServerFromId).toHaveBeenCalledWith('someServerId');
+    expect(mockServerService.deleteServerFromId).toHaveBeenCalledWith(
+      'someServerId',
+    );
   });
-
 });

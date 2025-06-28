@@ -20,7 +20,7 @@ describe('ServerService', () => {
       create: jest.fn(),
       delete: jest.fn(),
     },
-  }
+  };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -32,7 +32,8 @@ describe('ServerService', () => {
         },
       ],
     })
-      .overrideGuard(AuthGuard).useClass(MockAuthGuard)
+      .overrideGuard(AuthGuard)
+      .useClass(MockAuthGuard)
       .compile();
 
     service = module.get<ServerService>(ServerService);
@@ -43,7 +44,6 @@ describe('ServerService', () => {
     jest.clearAllMocks();
   });
 
-
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
@@ -51,13 +51,19 @@ describe('ServerService', () => {
   describe('getServerFromId', () => {
     it('should return the correct server', async () => {
       const serverId = 'someServerId';
-      const expectedServer = { id: serverId, serverName: 'Test Server', creatorId: 'user1' };
-      
+      const expectedServer = {
+        id: serverId,
+        serverName: 'Test Server',
+        creatorId: 'user1',
+      };
+
       prismaMock.server.findUnique.mockResolvedValue(expectedServer);
       const result = await service.getServerFromId(serverId);
 
       expect(result).toEqual(expectedServer);
-      expect(prisma.server.findUnique).toHaveBeenCalledWith({ where: { id: serverId } });
+      expect(prisma.server.findUnique).toHaveBeenCalledWith({
+        where: { id: serverId },
+      });
       expect(prisma.server.findUnique).toHaveBeenCalledTimes(1);
     });
 
@@ -68,10 +74,11 @@ describe('ServerService', () => {
       const result = await service.getServerFromId(serverId);
 
       expect(result).toBeNull();
-      expect(prisma.server.findUnique).toHaveBeenCalledWith({ where: { id: serverId } });
+      expect(prisma.server.findUnique).toHaveBeenCalledWith({
+        where: { id: serverId },
+      });
     });
   });
-
 
   describe('getAllServerFromUserId', () => {
     it('should return all servers for a given user ID', async () => {
@@ -86,7 +93,9 @@ describe('ServerService', () => {
       const result = await service.getAllServerFromUserId(userId);
 
       expect(result).toEqual(expectedServers);
-      expect(prisma.server.findMany).toHaveBeenCalledWith({ where: { creatorId: userId } });
+      expect(prisma.server.findMany).toHaveBeenCalledWith({
+        where: { creatorId: userId },
+      });
       expect(prisma.server.findMany).toHaveBeenCalledTimes(1);
     });
 
@@ -97,10 +106,11 @@ describe('ServerService', () => {
       const result = await service.getAllServerFromUserId(userId);
 
       expect(result).toEqual([]);
-      expect(prisma.server.findMany).toHaveBeenCalledWith({ where: { creatorId: userId } });
+      expect(prisma.server.findMany).toHaveBeenCalledWith({
+        where: { creatorId: userId },
+      });
     });
   });
-
 
   describe('createServer', () => {
     it('should create and return a new server', async () => {
@@ -145,19 +155,23 @@ describe('ServerService', () => {
       const result = await service.deleteServerFromId(serverId);
 
       expect(result).toEqual(deletedServer);
-      expect(prisma.server.delete).toHaveBeenCalledWith({ where: { id: serverId } });
+      expect(prisma.server.delete).toHaveBeenCalledWith({
+        where: { id: serverId },
+      });
       expect(prisma.server.delete).toHaveBeenCalledTimes(1);
     });
 
     it('should throw an error if server to delete is not found (Prisma error)', async () => {
-        const serverId = 'SomeNonExistantServerId';
-        const error = new Error('Server not found for deletion');
+      const serverId = 'SomeNonExistantServerId';
+      const error = new Error('Server not found for deletion');
 
-        // Simuler une erreur de Prisma, par exemple RecordNotFound
-        prismaMock.server.delete.mockRejectedValue(error);
+      // Simuler une erreur de Prisma, par exemple RecordNotFound
+      prismaMock.server.delete.mockRejectedValue(error);
 
-        await expect(service.deleteServerFromId(serverId)).rejects.toThrow(error);
-        expect(prisma.server.delete).toHaveBeenCalledWith({ where: { id: serverId } });
+      await expect(service.deleteServerFromId(serverId)).rejects.toThrow(error);
+      expect(prisma.server.delete).toHaveBeenCalledWith({
+        where: { id: serverId },
+      });
     });
   });
 });

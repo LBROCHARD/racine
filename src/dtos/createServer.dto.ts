@@ -1,4 +1,4 @@
 export type CreateServerDto = {
-    serverName: string;
-    serverColor: string;
-}
+  serverName: string;
+  serverColor: string;
+};
