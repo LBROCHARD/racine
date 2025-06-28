@@ -19,11 +19,12 @@ jobs:
         with:
           node-version: '20' 
           cache: 'npm'
-
-      - run: npm run build
-
+      
       - name: Install packages
         run: npm ci
+      
+      - run: npm run build
+      
 
       - name: Run tests
         run: npm test
