@@ -8,39 +8,45 @@ on :
 
 jobs:
 
-  build:
-    name: build
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' 
+          cache: 'npm'
 
       - run: npm run build
 
-  test:
-    name: test
-    needs: [build]
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-
       - name: Install packages
-        run: npm i  
+        run: npm ci
 
-      - name: Create a .env
-        run: | 
-          touch .env
-          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
-          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
-          echo "POSTGRES_USER=${{ secrets.POSTGRES_DB }}" >> .env
-          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_DB }}" >> .env
+      - name: Run tests
+        run: npm test
 
-      - name: Launch docker db
-        run: docker compose up
+      # - name: Run lint 
+      #   run: npm run lint
+      #   continue-on-error: true
 
-      - name: Generate Prisma  
-        run: | 
-          npx prisma generate
-          npx prisma migrate dev
+      - name: Build
+        run: npm run build
+
+      # - name: Create a .env
+      #   run: | 
+      #     touch .env
+      #     echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
+      #     echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
+      #     echo "POSTGRES_USER=${{ secrets.POSTGRES_DB }}" >> .env
+      #     echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_DB }}" >> .env
+
+      # - name: Launch docker db
+      #   run: docker compose up
+
+      # - name: Generate Prisma  
+      #   run: | 
+      #     npx prisma generate
+      #     npx prisma migrate dev
