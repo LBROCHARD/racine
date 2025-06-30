@@ -80,6 +80,7 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   },
+  "type": "module",
   "release-it": {
     "git": {
       "commitMessage": "chore: release v${version}"
