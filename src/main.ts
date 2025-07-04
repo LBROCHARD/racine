@@ -6,7 +6,7 @@ async function bootstrap() {
 
   // To authorise CORS in local developpement
   app.enableCors({
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173', 'https://echalote.onrender.com/'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
