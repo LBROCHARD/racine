@@ -23,7 +23,8 @@ export class AuthController {
   signIn(@Body() createUserDto: CreateUserDto) {
     return this.authService.signIn(
       createUserDto.username,
-      createUserDto.password,
+      createUserDto.email,
+      createUserDto.password
     );
   }
 
