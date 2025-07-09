@@ -14,7 +14,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+            fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -37,8 +39,12 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
-          branch: develop
+          token: ${{ secrets.GITHUB_TOKEN }}
           base: main
+          title: "Automatic Pull Request"
+          body: "Automatic description ! :)"
+          update-pull-request: true 
+          auto_merge: false
           draft: true
 
 
