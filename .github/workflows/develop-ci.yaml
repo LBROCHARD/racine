@@ -43,8 +43,8 @@ jobs:
           base: main
           title: "Automatic Pull Request"
           body: "Automatic description ! :)"
-          update-pull-request: true 
-          auto_merge: false
+          # update-pull-request: true 
+          # auto_merge: false
           draft: true
 
 
