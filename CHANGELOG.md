@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.0](https://github.com/LBROCHARD/racine/compare/0.1.0...0.2.0) (2025-07-10)
+
+### Features
+
+* added Lighthouse CI to github actions ([a10635d](https://github.com/LBROCHARD/racine/commit/a10635d98e3b10927bcf7b3cc150ca95b60e0e16))
+* created a dedicated develop-ci action and lighthouse action ([6e07590](https://github.com/LBROCHARD/racine/commit/6e07590038841cac94bc1f31e54b770edd9a4de4))
+* updated CI to new workflow ([f7a2a40](https://github.com/LBROCHARD/racine/commit/f7a2a405dd72f9659a698d491a513204bbe8aaea))
+* updated Lighthouse CI ([6311f70](https://github.com/LBROCHARD/racine/commit/6311f705278df2b8ab74171d4948fcc2f45c59b7))
+* updated lighthouse CI configuration ([acec84a](https://github.com/LBROCHARD/racine/commit/acec84a9ecf82014c2dce378da4207d45a2700d5))
+* updated lighthouse CI configuration ([d5b7b48](https://github.com/LBROCHARD/racine/commit/d5b7b48bd83a84b66dfc61c05051b7579622f86f))
+
 ## 0.1.0 (2025-07-08)
 
 ### Features
