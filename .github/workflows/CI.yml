@@ -32,14 +32,18 @@ jobs:
       # - name: Linter
       #   run: npm run lint
 
-      # - name: Run tests
-      #   run: npm test
+      - name: Run tests
+        run: npm test
       
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: (!cancelled())
         with:
           action_fail: true
+          files: |
+            test-results/**/*.xml
+            test-results/**/*.trx
+            test-results/**/*.json
 
       - name: Build
         run: npm run build
