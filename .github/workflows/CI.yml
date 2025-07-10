@@ -28,6 +28,9 @@ jobs:
 
       - name: Run tests
         run: npm test
+      
+      - name: Jest PR analysis
+        uses: Manogel/jest-pr-analysis@v1.1.1
 
       - name: Build
         run: npm run build
