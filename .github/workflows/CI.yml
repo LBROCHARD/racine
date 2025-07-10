@@ -40,10 +40,10 @@ jobs:
         if: (!cancelled())
         with:
           action_fail: true
-          files: |
-            test-results/**/*.xml
-            test-results/**/*.trx
-            test-results/**/*.json
+          # files: |
+          #   test-results/**/*.xml
+          #   test-results/**/*.trx
+          #   test-results/**/*.json
 
       - name: Build
         run: npm run build
