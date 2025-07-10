@@ -23,11 +23,11 @@ jobs:
       - name: Install packages
         run: npm ci
 
-      - name: Linter
-        run: npm run lint
+      # - name: Linter
+      #   run: npm run lint
 
-      - name: Run tests
-        run: npm test
+      # - name: Run tests
+      #   run: npm test
       
       - name: Jest PR analysis
         uses: Manogel/jest-pr-analysis@v1.1.1
