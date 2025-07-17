@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="16" failures="0" errors="0" time="9.344">
+  <testsuite name="AuthService" errors="0" failures="0" skipped="1" timestamp="2025-07-11T16:06:26" time="8.356" tests="1">
+    <testcase classname="AuthService should be defined" name="AuthService should be defined" time="0">
+      <skipped/>
+    </testcase>
+  </testsuite>
+  <testsuite name="AuthController" errors="0" failures="0" skipped="1" timestamp="2025-07-11T16:06:26" time="8.524" tests="1">
+    <testcase classname="AuthController should be defined" name="AuthController should be defined" time="0">
+      <skipped/>
+    </testcase>
+  </testsuite>
+  <testsuite name="AppController" errors="0" failures="0" skipped="0" timestamp="2025-07-11T16:06:26" time="8.595" tests="1">
+    <testcase classname="AppController root should return a Hello World" name="AppController root should return a Hello World" time="0.021">
+    </testcase>
+  </testsuite>
+  <testsuite name="ServerService" errors="0" failures="0" skipped="0" timestamp="2025-07-11T16:06:26" time="8.549" tests="8">
+    <testcase classname="ServerService should be defined" name="ServerService should be defined" time="0.019">
+    </testcase>
+    <testcase classname="ServerService getServerFromId should return the correct server" name="ServerService getServerFromId should return the correct server" time="0.005">
+    </testcase>
+    <testcase classname="ServerService getServerFromId should return null if server not found" name="ServerService getServerFromId should return null if server not found" time="0.003">
+    </testcase>
+    <testcase classname="ServerService getAllServerFromUserId should return all servers for a given user ID" name="ServerService getAllServerFromUserId should return all servers for a given user ID" time="0.003">
+    </testcase>
+    <testcase classname="ServerService getAllServerFromUserId should return an empty array if no servers found for user" name="ServerService getAllServerFromUserId should return an empty array if no servers found for user" time="0.003">
+    </testcase>
+    <testcase classname="ServerService createServer should create and return a new server" name="ServerService createServer should create and return a new server" time="0.002">
+    </testcase>
+    <testcase classname="ServerService deleteServerFromId should delete the correct server and return the deleted server" name="ServerService deleteServerFromId should delete the correct server and return the deleted server" time="0.002">
+    </testcase>
+    <testcase classname="ServerService deleteServerFromId should throw an error if server to delete is not found (Prisma error)" name="ServerService deleteServerFromId should throw an error if server to delete is not found (Prisma error)" time="0.016">
+    </testcase>
+  </testsuite>
+  <testsuite name="UsersService" errors="0" failures="0" skipped="1" timestamp="2025-07-11T16:06:26" time="8.604" tests="1">
+    <testcase classname="UsersService should be defined" name="UsersService should be defined" time="0">
+      <skipped/>
+    </testcase>
+  </testsuite>
+  <testsuite name="ServerController" errors="0" failures="0" skipped="0" timestamp="2025-07-11T16:06:26" time="8.758" tests="4">
+    <testcase classname="ServerController should be defined" name="ServerController should be defined" time="0.012">
+    </testcase>
+    <testcase classname="ServerController should call getMyServers with the right id when using GET on /server" name="ServerController should call getMyServers with the right id when using GET on /server" time="0.003">
+    </testcase>
+    <testcase classname="ServerController should call createServer with the right id and info when using POST on /server" name="ServerController should call createServer with the right id and info when using POST on /server" time="0.001">
+    </testcase>
+    <testcase classname="ServerController should call deleteServer using POST on /server" name="ServerController should call deleteServer using POST on /server" time="0.002">
+    </testcase>
+  </testsuite>
+</testsuites>
