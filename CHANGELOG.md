@@ -1,5 +1,28 @@
 # Changelog
 
+* fix: cleaned changelog (b2a8b5b)
+* fix: cleaned changelog (676c74a)
+* chore: release v0.2.0 (e435c38)
+* chore: linter and test results (e475b53)
+* Merge pull request #6 from LBROCHARD/feat/auth (74ac6de)
+* fix: fixed conflict with main branch (9fd6ee6)
+* Merge pull request #5 from LBROCHARD/develop (6453f70)
+* feat: updated back for auth (9955a8e)
+* feat: added conagelog npm script (639c090)
+* fix: fixed CI (2a0850a)
+* fix: fixed tests (4c91245)
+* fix: fixed all linter erros (90ae572)
+* feat: added Jest-Junit to create reports (e2f3a1e)
+* test: testing Jest PR analysis (91d9499)
+* test: testing Jest PR analysis (f47ca0b)
+* test: testing Jest PR analysis (d4c44c5)
+* test: testing Jest PR analysis (efbdfd6)
+* test: testing Jest PR analysis (5a17537)
+* test: testing Jest PR analysis (8c70af4)
+* test: testing modified lighthouse config (9af64e8)
+* test: testing modified lighthouse config (69b00c0)
+* fix: fixed wrong release (b3a209e)
+
 ## 0.1.0 (2025-07-08)
 
 ### Features
