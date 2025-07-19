@@ -19,7 +19,8 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prepare": "husky",
-    "release": "release-it"
+    "release": "release-it",
+    "changelog": "release-it --no-npm"
   },
   "dependencies": {
     "@commitlint/cli": "^19.8.1",
@@ -32,6 +33,7 @@
     "@release-it/conventional-changelog": "^10.0.1",
     "commitlint": "^19.8.1",
     "husky": "^9.1.7",
+    "jest-junit": "^16.0.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1"
   },
@@ -64,6 +66,22 @@
     "typescript-eslint": "^8.20.0"
   },
   "jest": {
+    "reporters": [
+      "default",
+      [
+        "jest-junit",
+        {
+          "outputDirectory": "reports/junit",
+          "outputName": "junit.xml"
+        }
+      ],
+      [
+        "github-actions",
+        {
+          "silent": false
+        }
+      ]
+    ],
     "moduleFileExtensions": [
       "js",
       "json",
@@ -77,6 +95,7 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
+    "coverageThreshold": {},
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   },

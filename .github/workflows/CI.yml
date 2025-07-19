@@ -1,10 +1,16 @@
 name: Continuous Integration
 
 on :
-  push:
+  pull_request:
+    types: [opened, synchronize, reopened]
     branches:
       - main
-      - develop
+
+permissions:
+  contents: read
+  issues: read
+  checks: write
+  pull-requests: write
 
 jobs:
 
@@ -25,9 +31,17 @@ jobs:
 
       - name: Linter
         run: npm run lint
-      
-      - name: Build
-        run: npm run build
 
       - name: Run tests
         run: npm test
+      
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: (!cancelled())
+        with:
+          action_fail: true
+          files: "reports/junit/junit.xml"
+
+      - name: Build
+        run: npm run build
+

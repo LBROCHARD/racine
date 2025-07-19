@@ -24,7 +24,7 @@ export class AuthController {
     return this.authService.signIn(
       createUserDto.username,
       createUserDto.email,
-      createUserDto.password
+      createUserDto.password,
     );
   }
 

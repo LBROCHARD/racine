@@ -11,6 +11,8 @@ import {
 import { AuthGuard } from '../auth/auth.guard';
 import { ServerService } from './server.service';
 import { CreateServerDto } from 'src/dtos/createServer.dto';
+import { AuthenticatedRequest } from 'src/types/request.interface';
+import { DeleteServerDto } from 'src/dtos/deleteServer.dto';
 
 @Controller('server')
 export class ServerController {
@@ -18,13 +20,16 @@ export class ServerController {
 
   @UseGuards(AuthGuard)
   @Get()
-  getMyServers(@Request() req) {
+  getMyServers(@Request() req: AuthenticatedRequest) {
     return this.serverService.getAllServerFromUserId(req.user.id);
   }
 
   @UseGuards(AuthGuard)
   @Post()
-  async createServer(@Request() req, @Body() createServerDto: CreateServerDto) {
+  async createServer(
+    @Request() req: AuthenticatedRequest,
+    @Body() createServerDto: CreateServerDto,
+  ) {
     try {
       return this.serverService.createServer(req.user.id, createServerDto);
     } catch (error) {
@@ -43,9 +48,12 @@ export class ServerController {
 
   @UseGuards(AuthGuard)
   @Post()
-  deleteServer(@Request() req) {
+  deleteServer(
+    @Request() req: AuthenticatedRequest,
+    @Body() deleteServerDto: DeleteServerDto,
+  ) {
     try {
-      return this.serverService.deleteServerFromId(req.server.id);
+      return this.serverService.deleteServerFromId(deleteServerDto.serverID);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
