@@ -1,0 +1,13 @@
+name: Continuous Delivery
+
+on:
+  release:
+    types: [published]
+
+jobs:
+
+  deploy-in-production:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3

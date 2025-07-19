@@ -66,7 +66,11 @@ describe('ServerController', () => {
 
   it('should call deleteServer using POST on /server', async () => {
     const reqMock = { server: { id: 'someServerId' } } as any;
-    await controller.deleteServer(reqMock);
+    const deleteDto = {
+      serverID: 'someServerId',
+    };
+    
+    await controller.deleteServer(reqMock, deleteDto as any);
     expect(mockServerService.deleteServerFromId).toHaveBeenCalledWith(
       'someServerId',
     );
