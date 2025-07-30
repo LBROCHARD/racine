@@ -28,7 +28,7 @@
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
     "@nestjs/jwt": "^11.0.0",
-    "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/platform-express": "^11.1.5",
     "@prisma/client": "^6.4.0",
     "@release-it/conventional-changelog": "^10.0.1",
     "commitlint": "^19.8.1",
