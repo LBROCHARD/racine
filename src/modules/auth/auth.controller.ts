@@ -21,11 +21,21 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @Post('login')
   signIn(@Body() createUserDto: CreateUserDto) {
-    return this.authService.signIn(
-      createUserDto.username,
-      createUserDto.email,
-      createUserDto.password,
-    );
+    // return this.authService.signIn(createUserDto);
+    try {
+      return this.authService.signIn(createUserDto);
+    } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
+      throw new HttpException(
+        {
+          status: HttpStatus.UNAUTHORIZED,
+          message: 'Failed to log in',
+        },
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
   }
 
   @Post('signup')
