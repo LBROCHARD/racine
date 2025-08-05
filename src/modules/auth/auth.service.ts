@@ -14,17 +14,13 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async signIn(
-    username: string,
-    email: string,
-    pass: string,
-  ): Promise<{ access_token: string; username: string; email: string }> {
-    let user = await this.usersService.findOneUserByEmail(email);
+  async signIn(createUserDto: CreateUserDto): Promise<{ access_token: string; username: string; email: string }> {
+    let user = await this.usersService.findOneUserByEmail(createUserDto.email);
 
-    if (user?.password !== pass) {
-      user = await this.usersService.findOneUserByUsername(username);
+    if (user?.password !== createUserDto.password) {
+      user = await this.usersService.findOneUserByUsername(createUserDto.username);
 
-      if (user?.password !== pass) {
+      if (user?.password !== createUserDto.password) {
         throw new UnauthorizedException();
       }
     }
