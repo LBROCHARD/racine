@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.1 (2025-08-05)
+
+### Hotfixes
+
+* hotfix send back errors when account does not exist ([f5ba630](https://github.com/LBROCHARD/racine/pull/19/commits/f5ba63072bb1733caf15d853a19d7b3e0c6264d1))
+
+
 ## 0.2.0 (2025-07-19)
 
 ### Features
