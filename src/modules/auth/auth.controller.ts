@@ -8,20 +8,22 @@ import {
   Post,
   UseGuards,
   Request,
+  Delete,
+  Param,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { CreateUserDto } from 'src/dtos/createUser.dto';
 import { AuthenticatedRequest } from 'src/types/request.interface';
+import { UsersService } from '../users/users.service';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private userService: UsersService) {};
 
   @HttpCode(HttpStatus.OK)
   @Post('login')
   signIn(@Body() createUserDto: CreateUserDto) {
-    // return this.authService.signIn(createUserDto);
     try {
       return this.authService.signIn(createUserDto);
     } catch (error) {
@@ -60,5 +62,21 @@ export class AuthController {
   @Get('profile')
   getProfile(@Request() req: AuthenticatedRequest) {
     return req.user;
+  }
+
+  @UseGuards(AuthGuard)
+  @Delete('delete/:id')
+  async deleteAccount(@Param('id') userIdToDelete: string, @Request() req: AuthenticatedRequest ) {
+    const connectedUserId = req.user.id;
+
+    if (connectedUserId !== userIdToDelete) {
+      throw new HttpException(
+        "You cannot delete an account that isn't yours.",
+        HttpStatus.FORBIDDEN,
+      );
+    } else {
+      await this.userService.deleteUser(userIdToDelete);
+      return { message: 'User successfully deleted.' };
+    }
   }
 }
