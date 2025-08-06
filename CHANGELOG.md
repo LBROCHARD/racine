@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/LBROCHARD/racine/compare/0.2.1...0.3.0) (2025-08-06)
+
+### Features
+
+* can now delete account ([db41f42](https://github.com/LBROCHARD/racine/commit/db41f42d394e2685561b07dc7425447eb798e75e))
+* updated CD ([8248d39](https://github.com/LBROCHARD/racine/commit/8248d39e5037400f1ae46ef38777537ffc3ebe3b))
+
 ## 0.2.1 (2025-08-05)
 
 ### Hotfixes
