@@ -22,4 +22,8 @@ export class UsersService {
   async findOneUserByUsername(username: string) {
     return await this.prisma.user.findUnique({ where: { username } });
   }
+
+  async deleteUser(idOfUserToDelete: string) {
+    return await this.prisma.user.delete({where: { id: idOfUserToDelete } })
+  }
 }
