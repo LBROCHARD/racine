@@ -25,33 +25,33 @@ model User {
   email         String    @unique
   password      String
 
-  servers ServerMember[]
-  serversCreated Server[]
+  groups GroupMember[]
+  groupsCreated Group[]
 }
 
-model ServerMember {
+model GroupMember {
   id            String    @id @default(uuid())
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
   userId        String
-  serverId      String
+  groupId      String
 
   user  User  @relation(fields: [userId], references: [id])
-  server  Server  @relation(fields: [serverId], references: [id])
+  group  Group  @relation(fields: [groupId], references: [id])
 }
 
-model Server {
+model Group {
   id            String    @id @default(uuid())
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
   creatorId     String
 
-  serverName    String
-  serverColor   String
+  groupName    String
+  groupColor   String
 
-  serverMembers ServerMember[] 
+  groupMembers GroupMember[] 
 
   user  User  @relation(fields: [creatorId], references: [id])
 }
