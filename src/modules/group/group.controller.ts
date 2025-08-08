@@ -8,6 +8,7 @@ import {
   Post,
   UseGuards,
   Put,
+  Delete,
 } from '@nestjs/common';
 import { AuthGuard } from '../auth/auth.guard';
 import { GroupService } from './group.service';
@@ -72,7 +73,7 @@ export class GroupController {
 
 
   @UseGuards(AuthGuard)
-  @Post()
+  @Delete()
   deleteGroup(
     @Request() req: AuthenticatedRequest,
     @Body() deleteGroupDto: DeleteGroupDto,
