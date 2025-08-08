@@ -126,4 +126,26 @@ export class GroupController {
     }
   }
 
+  @UseGuards(AuthGuard)
+  @Delete("/member")
+  async removeMemberFromGroup(
+    @Request() req: AuthenticatedRequest,
+    @Body() addMemberToGroupDto: AddMemberToGroupDto,
+  ) {
+    try {
+      return this.groupService.removeUserFromGroup(addMemberToGroupDto.username, addMemberToGroupDto.groupID);
+    } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          message: 'Failed to remove member to the group',
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
 }
