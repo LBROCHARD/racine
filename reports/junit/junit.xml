@@ -1,50 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="16" failures="0" errors="0" time="8.874">
-  <testsuite name="UsersService" errors="0" failures="0" skipped="1" timestamp="2025-08-09T09:16:33" time="8.271" tests="1">
-    <testcase classname="UsersService should be defined" name="UsersService should be defined" time="0">
+<testsuites name="jest tests" tests="18" failures="0" errors="0" time="14.739">
+  <testsuite name="PagesService" errors="0" failures="0" skipped="1" timestamp="2025-08-09T13:54:59" time="13.797" tests="1">
+    <testcase classname="PagesService should be defined" name="PagesService should be defined" time="0">
       <skipped/>
     </testcase>
   </testsuite>
-  <testsuite name="AppController" errors="0" failures="0" skipped="0" timestamp="2025-08-09T09:16:34" time="8.245" tests="1">
-    <testcase classname="AppController root should return a Hello World" name="AppController root should return a Hello World" time="0.03">
-    </testcase>
-  </testsuite>
-  <testsuite name="AuthController" errors="0" failures="0" skipped="1" timestamp="2025-08-09T09:16:33" time="8.286" tests="1">
+  <testsuite name="AuthController" errors="0" failures="0" skipped="1" timestamp="2025-08-09T13:54:59" time="13.825" tests="1">
     <testcase classname="AuthController should be defined" name="AuthController should be defined" time="0">
       <skipped/>
     </testcase>
   </testsuite>
-  <testsuite name="GroupService" errors="0" failures="0" skipped="0" timestamp="2025-08-09T09:16:33" time="8.397" tests="8">
-    <testcase classname="GroupService should be defined" name="GroupService should be defined" time="0.021">
-    </testcase>
-    <testcase classname="GroupService getGroupFromId should return the correct group" name="GroupService getGroupFromId should return the correct group" time="0.006">
-    </testcase>
-    <testcase classname="GroupService getGroupFromId should return null if group not found" name="GroupService getGroupFromId should return null if group not found" time="0.003">
-    </testcase>
-    <testcase classname="GroupService getAllGroupFromUserId should return all groups for a given user ID" name="GroupService getAllGroupFromUserId should return all groups for a given user ID" time="0.002">
-    </testcase>
-    <testcase classname="GroupService getAllGroupFromUserId should return an empty array if no groups found for user" name="GroupService getAllGroupFromUserId should return an empty array if no groups found for user" time="0.002">
-    </testcase>
-    <testcase classname="GroupService createGroup should create and return a new group" name="GroupService createGroup should create and return a new group" time="0.002">
-    </testcase>
-    <testcase classname="GroupService deleteGroupFromId should delete the correct group and return the deleted group" name="GroupService deleteGroupFromId should delete the correct group and return the deleted group" time="0.002">
-    </testcase>
-    <testcase classname="GroupService deleteGroupFromId should throw an error if group to delete is not found (Prisma error)" name="GroupService deleteGroupFromId should throw an error if group to delete is not found (Prisma error)" time="0.016">
+  <testsuite name="UsersService" errors="0" failures="0" skipped="1" timestamp="2025-08-09T13:54:59" time="13.832" tests="1">
+    <testcase classname="UsersService should be defined" name="UsersService should be defined" time="0">
+      <skipped/>
     </testcase>
   </testsuite>
-  <testsuite name="GroupController" errors="0" failures="0" skipped="0" timestamp="2025-08-09T09:16:34" time="8.42" tests="4">
-    <testcase classname="GroupController should be defined" name="GroupController should be defined" time="0.024">
-    </testcase>
-    <testcase classname="GroupController should call getMyGroups with the right id when using GET on /Group" name="GroupController should call getMyGroups with the right id when using GET on /Group" time="0.004">
-    </testcase>
-    <testcase classname="GroupController should call createGroup with the right id and info when using POST on /Group" name="GroupController should call createGroup with the right id and info when using POST on /Group" time="0.001">
-    </testcase>
-    <testcase classname="GroupController should call deleteGroup using POST on /Group" name="GroupController should call deleteGroup using POST on /Group" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="AuthService" errors="0" failures="0" skipped="1" timestamp="2025-08-09T09:16:33" time="8.496" tests="1">
+  <testsuite name="AuthService" errors="0" failures="0" skipped="1" timestamp="2025-08-09T13:54:59" time="13.875" tests="1">
     <testcase classname="AuthService should be defined" name="AuthService should be defined" time="0">
       <skipped/>
+    </testcase>
+  </testsuite>
+  <testsuite name="PagesController" errors="0" failures="0" skipped="1" timestamp="2025-08-09T13:54:59" time="13.948" tests="1">
+    <testcase classname="PagesController should be defined" name="PagesController should be defined" time="0">
+      <skipped/>
+    </testcase>
+  </testsuite>
+  <testsuite name="GroupController" errors="0" failures="0" skipped="0" timestamp="2025-08-09T13:54:59" time="13.876" tests="4">
+    <testcase classname="GroupController should be defined" name="GroupController should be defined" time="0.05">
+    </testcase>
+    <testcase classname="GroupController should call getMyGroups with the right id when using GET on /Group" name="GroupController should call getMyGroups with the right id when using GET on /Group" time="0.008">
+    </testcase>
+    <testcase classname="GroupController should call createGroup with the right id and info when using POST on /Group" name="GroupController should call createGroup with the right id and info when using POST on /Group" time="0.005">
+    </testcase>
+    <testcase classname="GroupController should call deleteGroup using POST on /Group" name="GroupController should call deleteGroup using POST on /Group" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="GroupService" errors="0" failures="0" skipped="0" timestamp="2025-08-09T13:54:59" time="13.945" tests="8">
+    <testcase classname="GroupService should be defined" name="GroupService should be defined" time="0.045">
+    </testcase>
+    <testcase classname="GroupService getGroupFromId should return the correct group" name="GroupService getGroupFromId should return the correct group" time="0.026">
+    </testcase>
+    <testcase classname="GroupService getGroupFromId should return null if group not found" name="GroupService getGroupFromId should return null if group not found" time="0.007">
+    </testcase>
+    <testcase classname="GroupService getAllGroupFromUserId should return all groups for a given user ID" name="GroupService getAllGroupFromUserId should return all groups for a given user ID" time="0.005">
+    </testcase>
+    <testcase classname="GroupService getAllGroupFromUserId should return an empty array if no groups found for user" name="GroupService getAllGroupFromUserId should return an empty array if no groups found for user" time="0.006">
+    </testcase>
+    <testcase classname="GroupService createGroup should create and return a new group" name="GroupService createGroup should create and return a new group" time="0.006">
+    </testcase>
+    <testcase classname="GroupService deleteGroupFromId should delete the correct group and return the deleted group" name="GroupService deleteGroupFromId should delete the correct group and return the deleted group" time="0.006">
+    </testcase>
+    <testcase classname="GroupService deleteGroupFromId should throw an error if group to delete is not found (Prisma error)" name="GroupService deleteGroupFromId should throw an error if group to delete is not found (Prisma error)" time="0.027">
+    </testcase>
+  </testsuite>
+  <testsuite name="AppController" errors="0" failures="0" skipped="0" timestamp="2025-08-09T13:55:13" time="0.329" tests="1">
+    <testcase classname="AppController root should return a Hello World" name="AppController root should return a Hello World" time="0.014">
     </testcase>
   </testsuite>
 </testsuites>

@@ -10,4 +10,3 @@ import { PagesService } from './pages.service';
   exports: [PagesService],
 })
 export class PagesModule {}
-

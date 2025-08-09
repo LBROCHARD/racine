@@ -1,5 +1,5 @@
 export type UpdatePageContentDto = {
-    groupId: string;
-    pageId: string;
-    pageContent: string;
+  groupId: string;
+  pageId: string;
+  pageContent: string;
 };
