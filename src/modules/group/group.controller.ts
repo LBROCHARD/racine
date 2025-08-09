@@ -9,6 +9,7 @@ import {
   UseGuards,
   Put,
   Delete,
+  Param,
 } from '@nestjs/common';
 import { AuthGuard } from '../auth/auth.guard';
 import { GroupService } from './group.service';
@@ -16,6 +17,7 @@ import { CreateGroupDto } from 'src/dtos/createGroup.dto';
 import { AuthenticatedRequest } from 'src/types/request.interface';
 import { DeleteGroupDto } from 'src/dtos/deleteGroup.dto';
 import { UpdateGroupDto } from 'src/dtos/updateGroup.dto';
+import { AddMemberToGroupDto } from 'src/dtos/AddMemberToGroup.dto';
 
 @Controller('group')
 export class GroupController {
@@ -71,7 +73,6 @@ export class GroupController {
     }
   }
 
-
   @UseGuards(AuthGuard)
   @Delete()
   deleteGroup(
@@ -88,6 +89,67 @@ export class GroupController {
         {
           status: HttpStatus.BAD_REQUEST,
           message: 'Failed to delete group',
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
+  // ---------- Members ----------
+
+  @UseGuards(AuthGuard)
+  @Get('/member/:id')
+  getGroupMembers(
+    @Request() req: AuthenticatedRequest,
+    @Param('id') groupID: string,
+  ) {
+    return this.groupService.getAllMembersFromGroupId(groupID);
+  }
+
+  @UseGuards(AuthGuard)
+  @Post('/member')
+  async addUsername(
+    @Request() req: AuthenticatedRequest,
+    @Body() addMemberToGroupDto: AddMemberToGroupDto,
+  ) {
+    try {
+      return this.groupService.createGroupMember(
+        addMemberToGroupDto.username,
+        addMemberToGroupDto.groupID,
+      );
+    } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          message: 'Failed to add member to the group',
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
+  @UseGuards(AuthGuard)
+  @Delete('/member')
+  async removeMemberFromGroup(
+    @Request() req: AuthenticatedRequest,
+    @Body() addMemberToGroupDto: AddMemberToGroupDto,
+  ) {
+    try {
+      return this.groupService.removeUserFromGroup(
+        addMemberToGroupDto.username,
+        addMemberToGroupDto.groupID,
+      );
+    } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          message: 'Failed to remove member to the group',
         },
         HttpStatus.BAD_REQUEST,
       );

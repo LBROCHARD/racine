@@ -19,7 +19,10 @@ import { UsersService } from '../users/users.service';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService, private userService: UsersService) {};
+  constructor(
+    private authService: AuthService,
+    private userService: UsersService,
+  ) {}
 
   @HttpCode(HttpStatus.OK)
   @Post('login')
@@ -66,7 +69,10 @@ export class AuthController {
 
   @UseGuards(AuthGuard)
   @Delete('delete/:id')
-  async deleteAccount(@Param('id') userIdToDelete: string, @Request() req: AuthenticatedRequest ) {
+  async deleteAccount(
+    @Param('id') userIdToDelete: string,
+    @Request() req: AuthenticatedRequest,
+  ) {
     const connectedUserId = req.user.id;
 
     if (connectedUserId !== userIdToDelete) {

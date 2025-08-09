@@ -20,6 +20,12 @@ describe('GroupService', () => {
       create: jest.fn(),
       delete: jest.fn(),
     },
+    groupMember: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      create: jest.fn(),
+      delete: jest.fn(),
+    }
   };
 
   beforeEach(async () => {
@@ -88,26 +94,33 @@ describe('GroupService', () => {
         { id: 's2', groupName: 'Group 2', creatorId: userId },
       ];
 
-      prismaMock.group.findMany.mockResolvedValue(expectedGroups);
+      const mockGroupMembers = [
+        { id: 'member1', userId: userId, groupId: 's1', group: expectedGroups[0] },
+        { id: 'member2', userId: userId, groupId: 's2', group: expectedGroups[1] },
+      ];
+
+      prismaMock.groupMember.findMany.mockResolvedValue(mockGroupMembers);
 
       const result = await service.getAllGroupFromUserId(userId);
 
       expect(result).toEqual(expectedGroups);
-      expect(prisma.group.findMany).toHaveBeenCalledWith({
-        where: { creatorId: userId },
+      expect(prisma.groupMember.findMany).toHaveBeenCalledWith({
+        where: { userId: userId },
+        include: { group: true },
       });
-      expect(prisma.group.findMany).toHaveBeenCalledTimes(1);
+      expect(prisma.groupMember.findMany).toHaveBeenCalledTimes(1);
     });
 
     it('should return an empty array if no groups found for user', async () => {
       const userId = 'someUserId';
-      prismaMock.group.findMany.mockResolvedValue([]);
+      prismaMock.groupMember.findMany.mockResolvedValue([]);
 
       const result = await service.getAllGroupFromUserId(userId);
 
       expect(result).toEqual([]);
-      expect(prisma.group.findMany).toHaveBeenCalledWith({
-        where: { creatorId: userId },
+      expect(prisma.groupMember.findMany).toHaveBeenCalledWith({
+        where: { userId: userId },
+        include: { group: true },
       });
     });
   });
