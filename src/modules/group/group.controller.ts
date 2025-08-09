@@ -73,7 +73,6 @@ export class GroupController {
     }
   }
 
-
   @UseGuards(AuthGuard)
   @Delete()
   deleteGroup(
@@ -99,19 +98,25 @@ export class GroupController {
   // ---------- Members ----------
 
   @UseGuards(AuthGuard)
-  @Get("/member/:id")
-  getGroupMembers(@Request() req: AuthenticatedRequest, @Param('id') groupID: string,) {
+  @Get('/member/:id')
+  getGroupMembers(
+    @Request() req: AuthenticatedRequest,
+    @Param('id') groupID: string,
+  ) {
     return this.groupService.getAllMembersFromGroupId(groupID);
   }
 
   @UseGuards(AuthGuard)
-  @Post("/member")
+  @Post('/member')
   async addUsername(
     @Request() req: AuthenticatedRequest,
     @Body() addMemberToGroupDto: AddMemberToGroupDto,
   ) {
     try {
-      return this.groupService.createGroupMember(addMemberToGroupDto.username, addMemberToGroupDto.groupID);
+      return this.groupService.createGroupMember(
+        addMemberToGroupDto.username,
+        addMemberToGroupDto.groupID,
+      );
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
@@ -127,13 +132,16 @@ export class GroupController {
   }
 
   @UseGuards(AuthGuard)
-  @Delete("/member")
+  @Delete('/member')
   async removeMemberFromGroup(
     @Request() req: AuthenticatedRequest,
     @Body() addMemberToGroupDto: AddMemberToGroupDto,
   ) {
     try {
-      return this.groupService.removeUserFromGroup(addMemberToGroupDto.username, addMemberToGroupDto.groupID);
+      return this.groupService.removeUserFromGroup(
+        addMemberToGroupDto.username,
+        addMemberToGroupDto.groupID,
+      );
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
@@ -147,5 +155,4 @@ export class GroupController {
       );
     }
   }
-
 }

@@ -22,11 +22,11 @@ export class GroupService {
       },
     });
 
-    return groupMembers.map(member => member.group);
+    return groupMembers.map((member) => member.group);
   }
 
   async createGroup(userId: string, createGroupDto: CreateGroupDto) {
-    var newGroup = await this.prisma.group.create({
+    const newGroup = await this.prisma.group.create({
       data: {
         groupName: createGroupDto.groupName,
         groupColor: createGroupDto.groupColor,
@@ -40,14 +40,14 @@ export class GroupService {
         groupId: newGroup.id,
         userId: userId,
       },
-    })
+    });
     return newGroup;
   }
 
   async modifyGroup(updateGroupDto: UpdateGroupDto) {
     return await this.prisma.group.update({
       where: {
-        id: updateGroupDto.groupID
+        id: updateGroupDto.groupID,
       },
       data: {
         groupName: updateGroupDto.groupName,
@@ -73,12 +73,16 @@ export class GroupService {
       },
     });
 
-    return groupMembers.map(member => member.user);
+    return groupMembers.map((member) => member.user);
   }
 
   async createGroupMember(username: string, groupID: string) {
-    var group = await this.prisma.group.findUnique({ where: { id: groupID } })
-    var user = await this.prisma.user.findUnique({ where: { username: username } })
+    const group = await this.prisma.group.findUnique({
+      where: { id: groupID },
+    });
+    const user = await this.prisma.user.findUnique({
+      where: { username: username },
+    });
 
     if (!group) {
       throw new HttpException('Group not found.', HttpStatus.NOT_FOUND);
@@ -95,8 +99,12 @@ export class GroupService {
   }
 
   async removeUserFromGroup(username: string, groupID: string) {
-    var group = await this.prisma.group.findUnique({ where: { id: groupID } })
-    var user = await this.prisma.user.findUnique({ where: { username: username } })
+    const group = await this.prisma.group.findUnique({
+      where: { id: groupID },
+    });
+    const user = await this.prisma.user.findUnique({
+      where: { username: username },
+    });
 
     if (!group) {
       throw new HttpException('Group not found.', HttpStatus.NOT_FOUND);
@@ -104,13 +112,18 @@ export class GroupService {
       throw new HttpException('User not found.', HttpStatus.NOT_FOUND);
     }
 
-    var groupMember = await this.prisma.groupMember.findFirst({where: {groupId: groupID, userId: user.id} });
+    const groupMember = await this.prisma.groupMember.findFirst({
+      where: { groupId: groupID, userId: user.id },
+    });
     if (!groupMember) {
-      throw new HttpException('The member is not a part of that group.', HttpStatus.NOT_FOUND);
+      throw new HttpException(
+        'The member is not a part of that group.',
+        HttpStatus.NOT_FOUND,
+      );
     }
 
     return await this.prisma.groupMember.delete({
-      where: { id: groupMember.id }
+      where: { id: groupMember.id },
     });
   }
 }
