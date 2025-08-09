@@ -45,10 +45,40 @@ model Group {
 
   creatorId     String
 
-  groupName    String
-  groupColor   String
+  groupName     String
+  groupColor    String
 
-  groupMembers GroupMember[] 
+  groupMembers  GroupMember[] 
+  groupPages    GroupPage[] 
+  pages    Page[] 
 
   user  User  @relation(fields: [creatorId], references: [id])
+}
+
+model GroupPage {
+  id            String    @id @default(uuid())
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  groupId      String
+  pageId      String
+
+  page    Page  @relation(fields: [pageId], references: [id])
+  group   Group  @relation(fields: [groupId], references: [id])
+}
+
+model Page {
+  id            String    @id @default(uuid())
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  groupId       String
+
+  pageName      String
+  pageColor     String
+  content       String
+
+  groupPages    GroupPage[] 
+
+  group  Group  @relation(fields: [groupId], references: [id])
 }

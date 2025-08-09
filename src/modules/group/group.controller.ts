@@ -17,7 +17,7 @@ import { CreateGroupDto } from 'src/dtos/createGroup.dto';
 import { AuthenticatedRequest } from 'src/types/request.interface';
 import { DeleteGroupDto } from 'src/dtos/deleteGroup.dto';
 import { UpdateGroupDto } from 'src/dtos/updateGroup.dto';
-import { AddMemberToGroupDto } from 'src/dtos/AddMemberToGroup.dto';
+import { AddMemberToGroupDto } from 'src/dtos/addMemberToGroup.dto';
 
 @Controller('group')
 export class GroupController {
