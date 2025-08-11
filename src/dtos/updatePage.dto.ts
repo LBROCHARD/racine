@@ -3,4 +3,5 @@ export type UpdatePageDto = {
   pageId: string;
   pageName: string;
   pageColor: string;
+  pageTags: string;
 };
