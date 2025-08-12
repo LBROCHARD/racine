@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.1](https://github.com/LBROCHARD/racine/compare/0.4.0...0.4.1) (2025-08-12)
+
+### Bug Fixes
+
+* delete group now delete all group members ([ee93edc](https://github.com/LBROCHARD/racine/commit/ee93edce3f25160a039476a8feb0f06531f2c660))
+* fixed test erros ([4cf7d89](https://github.com/LBROCHARD/racine/commit/4cf7d8927a593b673ac1f5bc6ad611d7b0a6bcfe))
+* tags ([e086b4c](https://github.com/LBROCHARD/racine/commit/e086b4c551fbbdc22ac8694d8070e3b60e9ecdff))
+
 ## [0.4.0](https://github.com/LBROCHARD/racine/compare/0.3.1...0.4.0) (2025-08-12)
 
 ### Features
