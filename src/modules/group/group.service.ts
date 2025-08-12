@@ -56,7 +56,26 @@ export class GroupService {
     });
   }
 
-  async deleteGroupFromId(groupId: string) {
+  async deleteGroupFromId(userId: string, groupId: string) {
+    // Check if group and user exist
+    const group = await this.prisma.group.findUnique({
+      where: { id: groupId },
+    });
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+    });
+    if (!group) {
+      throw new HttpException('Group not found.', HttpStatus.NOT_FOUND);
+    } else if (!user) {
+      throw new HttpException('User not found.', HttpStatus.NOT_FOUND);
+    }
+
+    // Delete all members of this group
+    await this.prisma.groupMember.deleteMany({
+      where: { groupId: groupId },
+    });
+
+    // Delete the group
     return await this.prisma.group.delete({ where: { id: groupId } });
   }
 
