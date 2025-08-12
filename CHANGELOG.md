@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.4.0](https://github.com/LBROCHARD/racine/compare/0.3.1...0.4.0) (2025-08-12)
+
+### Features
+
+* added pages routes ([60efd72](https://github.com/LBROCHARD/racine/commit/60efd7208c8705560b89831c8be9364612bae2e2))
+* can add members to groups ([326c47d](https://github.com/LBROCHARD/racine/commit/326c47d2ddee891d31ddc51a60fe79adc7fdccce))
+* can delete groups ([530585f](https://github.com/LBROCHARD/racine/commit/530585ff8307b8c96230dfc5c4255ca91590f136))
+* can remove members ([ee45a31](https://github.com/LBROCHARD/racine/commit/ee45a3179ecac7eb77792a818c68bf3ca194147c))
+* updated group name and added route to modify groups ([ed024ec](https://github.com/LBROCHARD/racine/commit/ed024ec0190ece0f9a69a3f43e9f830685c76c47))
+* updated pages to have tags ([202b15c](https://github.com/LBROCHARD/racine/commit/202b15c3a749ca556b3c0ef67bd768c2a6e21612))
+
+### Bug Fixes
+
+* fixed test errors ([5248160](https://github.com/LBROCHARD/racine/commit/52481602958f406d4c7d201f76b4237310e08be0))
+* modified test to fit to modifications ([37ba1e8](https://github.com/LBROCHARD/racine/commit/37ba1e86db333f5e1b230e32bca20a8b12cb74f2))
+
 ## [0.3.1](https://github.com/LBROCHARD/racine/compare/0.3.0...0.3.1) (2025-08-06)
 
 ### Bug Fixes
