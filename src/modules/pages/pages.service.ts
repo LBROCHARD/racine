@@ -114,7 +114,7 @@ export class PagesService {
         pageName: createPageDto.pageName,
         pageColor: createPageDto.pageColor,
         content: '',
-        tags: '',
+        tags: createPageDto.tags,
       },
     });
 
