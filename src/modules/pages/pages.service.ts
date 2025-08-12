@@ -114,6 +114,7 @@ export class PagesService {
         pageName: createPageDto.pageName,
         pageColor: createPageDto.pageColor,
         content: '',
+        tags: '',
       },
     });
 
@@ -172,6 +173,7 @@ export class PagesService {
       data: {
         pageName: updatePageDto.pageName,
         pageColor: updatePageDto.pageColor,
+        tags: updatePageDto.pageTags,
       },
     });
   }
