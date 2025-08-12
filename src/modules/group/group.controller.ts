@@ -80,7 +80,7 @@ export class GroupController {
     @Body() deleteGroupDto: DeleteGroupDto,
   ) {
     try {
-      return this.groupService.deleteGroupFromId(deleteGroupDto.groupID);
+      return this.groupService.deleteGroupFromId(req.user.id, deleteGroupDto.groupID);
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
