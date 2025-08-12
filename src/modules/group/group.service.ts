@@ -64,10 +64,10 @@ export class GroupService {
     const user = await this.prisma.user.findUnique({
       where: { id: userId },
     });
-    if (!group) {
-      throw new HttpException('Group not found.', HttpStatus.NOT_FOUND);
-    } else if (!user) {
+    if (!user) {
       throw new HttpException('User not found.', HttpStatus.NOT_FOUND);
+    } else if (!group) {
+      throw new HttpException('Group not found.', HttpStatus.NOT_FOUND);
     }
 
     // Delete all members of this group

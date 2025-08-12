@@ -65,13 +65,14 @@ describe('GroupController', () => {
   });
 
   it('should call deleteGroup using POST on /Group', async () => {
-    const reqMock = { Group: { id: 'someGroupId' } } as any;
+    const reqMock = { user: { id: 'someUserId' } } as any;
     const deleteDto = {
       groupID: 'someGroupId',
     };
     
     await controller.deleteGroup(reqMock, deleteDto as any);
     expect(mockGroupService.deleteGroupFromId).toHaveBeenCalledWith(
+      'someUserId',
       'someGroupId',
     );
   });

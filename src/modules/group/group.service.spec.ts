@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { GroupService } from './group.service';
-import { CanActivate } from '@nestjs/common';
+import { CanActivate, HttpException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { CreateGroupDto } from 'src/dtos/createGroup.dto';
@@ -14,6 +14,9 @@ describe('GroupService', () => {
   }
 
   const prismaMock = {
+    user: {
+      findUnique: jest.fn(),
+    },
     group: {
       findUnique: jest.fn(),
       findMany: jest.fn(),
@@ -25,6 +28,7 @@ describe('GroupService', () => {
       findMany: jest.fn(),
       create: jest.fn(),
       delete: jest.fn(),
+      deleteMany: jest.fn(),
     }
   };
 
@@ -156,35 +160,67 @@ describe('GroupService', () => {
 
   describe('deleteGroupFromId', () => {
     it('should delete the correct group and return the deleted group', async () => {
+      const userId = 'someUserId';
       const groupId = 'SomeGroupId';
       const deletedGroup = {
         id: groupId,
         groupName: 'Group to be deleted',
-        creatorId: 'SomeUserId',
+        creatorId: userId,
       };
-
+      const existingUser = {
+        id: userId,
+        username: 'testUser',
+      };
+      const existingGroup = {
+        id: groupId,
+        groupName: 'Group to be deleted',
+        creatorId: 'someOtherUserId',
+      };
+      
+      prismaMock.user.findUnique.mockResolvedValue(existingUser);
+      prismaMock.group.findUnique.mockResolvedValue(existingGroup);
+      
+      prismaMock.groupMember.deleteMany.mockResolvedValue({ count: 5 }); 
       prismaMock.group.delete.mockResolvedValue(deletedGroup);
 
-      const result = await service.deleteGroupFromId(groupId);
+      const result = await service.deleteGroupFromId(userId, groupId);
 
       expect(result).toEqual(deletedGroup);
-      expect(prisma.group.delete).toHaveBeenCalledWith({
-        where: { id: groupId },
-      });
-      expect(prisma.group.delete).toHaveBeenCalledTimes(1);
+      expect(prismaMock.user.findUnique).toHaveBeenCalledWith({ where: { id: userId } });
+      expect(prismaMock.group.findUnique).toHaveBeenCalledWith({ where: { id: groupId } });
+      expect(prismaMock.groupMember.deleteMany).toHaveBeenCalledWith({ where: { groupId: groupId } });
+      expect(prismaMock.group.delete).toHaveBeenCalledWith({ where: { id: groupId } });
+      expect(prismaMock.group.delete).toHaveBeenCalledTimes(1);
     });
 
-    it('should throw an error if group to delete is not found (Prisma error)', async () => {
-      const groupId = 'SomeNonExistantGroupId';
-      const error = new Error('Group not found for deletion');
+    it('should throw HttpException if group is not found', async () => {
+      const userId = 'someUserId';
+      const groupId = 'SomeNonExistentGroupId';
 
-      // Simuler une erreur de Prisma, par exemple RecordNotFound
-      prismaMock.group.delete.mockRejectedValue(error);
-
-      await expect(service.deleteGroupFromId(groupId)).rejects.toThrow(error);
-      expect(prisma.group.delete).toHaveBeenCalledWith({
-        where: { id: groupId },
+      prismaMock.user.findUnique.mockResolvedValue({
+        id: userId,
+        username: 'testUser',
       });
+
+      prismaMock.group.findUnique.mockResolvedValue(null);
+
+      await expect(service.deleteGroupFromId(userId, groupId)).rejects.toThrow(new HttpException('Group not found.', 404));
+
+      expect(prismaMock.group.delete).not.toHaveBeenCalled();
+      expect(prismaMock.groupMember.deleteMany).not.toHaveBeenCalled();
+    });
+
+    it('should throw HttpException if user is not found', async () => {
+      const userId = 'SomeNonExistentUserId';
+      const groupId = 'SomeGroupId';
+      
+      prismaMock.user.findUnique.mockResolvedValue(null);
+
+      await expect(service.deleteGroupFromId(userId, groupId)).rejects.toThrow(new HttpException('User not found.', 404));
+
+      expect(prismaMock.group.delete).not.toHaveBeenCalled();
+      expect(prismaMock.groupMember.deleteMany).not.toHaveBeenCalled();
     });
   });
+
 });
