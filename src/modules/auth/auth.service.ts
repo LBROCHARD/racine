@@ -21,12 +21,17 @@ export class AuthService {
     email: string;
     id: string;
   }> {
-    let user = await this.usersService.findOneUserByEmail(createUserDto.email);
+    const user = await this.usersService.findOneUserByEmail(
+      createUserDto.email,
+    );
     if (!user) {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    const isPasswordMatching = await bcrypt.compare(createUserDto.password, user.password);
+    const isPasswordMatching = await bcrypt.compare(
+      createUserDto.password,
+      user.password,
+    );
     if (!isPasswordMatching) {
       throw new UnauthorizedException('Invalid credentials');
     }

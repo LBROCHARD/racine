@@ -14,11 +14,11 @@ import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
-    PrismaModule, 
-    AuthModule, 
-    UsersModule, 
-    GroupModule, 
-    PagesModule, 
+    PrismaModule,
+    AuthModule,
+    UsersModule,
+    GroupModule,
+    PagesModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),
@@ -31,7 +31,7 @@ import { APP_GUARD } from '@nestjs/core';
   ],
   controllers: [AppController, PagesController],
   providers: [
-    AppService, 
+    AppService,
     PagesService,
     {
       provide: APP_GUARD,
