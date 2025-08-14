@@ -6,6 +6,7 @@ import {
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { CreateUserDto } from 'src/dtos/createUser.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -21,15 +22,13 @@ export class AuthService {
     id: string;
   }> {
     let user = await this.usersService.findOneUserByEmail(createUserDto.email);
+    if (!user) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
 
-    if (user?.password !== createUserDto.password) {
-      user = await this.usersService.findOneUserByUsername(
-        createUserDto.username,
-      );
-
-      if (user?.password !== createUserDto.password) {
-        throw new UnauthorizedException();
-      }
+    const isPasswordMatching = await bcrypt.compare(createUserDto.password, user.password);
+    if (!isPasswordMatching) {
+      throw new UnauthorizedException('Invalid credentials');
     }
 
     const payload = { id: user.id, username: user.username, email: user.email };
@@ -56,14 +55,8 @@ export class AuthService {
       throw new BadRequestException('Email already used for an account');
     }
 
-    // const hashedPassword = await this.hashPassword(registerDto.password);
-
     const user = await this.usersService.createUser(createUserDto);
 
     return user;
   }
-
-  // async hashPassword(password: string): Promise<string> {
-  //     return await bcrypt.hash(password, 10);
-  // }
 }

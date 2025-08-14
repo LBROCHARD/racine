@@ -8,9 +8,19 @@ import { GroupModule } from './modules/group/group.module';
 import { PagesController } from './modules/pages/pages.controller';
 import { PagesService } from './modules/pages/pages.service';
 import { PagesModule } from './modules/pages/pages.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [PrismaModule, AuthModule, UsersModule, GroupModule, PagesModule],
+  imports: [
+    PrismaModule, 
+    AuthModule, 
+    UsersModule, 
+    GroupModule, 
+    PagesModule, 
+    ConfigModule.forRoot({
+      isGlobal: true,
+    })
+  ],
   controllers: [AppController, PagesController],
   providers: [AppService, PagesService],
 })
