@@ -16,6 +16,7 @@ import { AuthGuard } from './auth.guard';
 import { CreateUserDto } from 'src/dtos/createUser.dto';
 import { AuthenticatedRequest } from 'src/types/request.interface';
 import { UsersService } from '../users/users.service';
+import { Throttle } from '@nestjs/throttler';
 
 @Controller('auth')
 export class AuthController {
@@ -24,6 +25,8 @@ export class AuthController {
     private userService: UsersService,
   ) {}
 
+  // Limit to 5 request per minutes when it's login
+  @Throttle({ default: { limit: 5, ttl: 60000 } })
   @HttpCode(HttpStatus.OK)
   @Post('login')
   signIn(@Body() createUserDto: CreateUserDto) {
