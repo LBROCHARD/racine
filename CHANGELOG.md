@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.0](https://github.com/LBROCHARD/racine/compare/0.5.0...1.0.0) (2025-08-19)
+
+### Bug Fixes
+
+* added release-major script ([b5e30a8](https://github.com/LBROCHARD/racine/commit/b5e30a8b5c6a00d867f5dda0c028da028fd717a2))
+
 ## [0.5.0](https://github.com/LBROCHARD/racine/compare/0.4.1...0.5.0) (2025-08-19)
 
 ### Features
