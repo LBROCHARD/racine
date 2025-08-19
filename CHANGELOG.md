@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.5.0](https://github.com/LBROCHARD/racine/compare/0.4.1...0.5.0) (2025-08-19)
+
+### Features
+
+* added hashing and salting for security ([42765e3](https://github.com/LBROCHARD/racine/commit/42765e3b7b7b41b6f84649f43889b94add47d5af))
+* changed API ready signal ([c09bbcb](https://github.com/LBROCHARD/racine/commit/c09bbcb64203c61fe3772aff3cb00117f55dcdbe))
+* protecting API from spam ([f96d986](https://github.com/LBROCHARD/racine/commit/f96d986e40b75c8ee74c33b365b6fbf815f2218b))
+* updated readme ([b87854b](https://github.com/LBROCHARD/racine/commit/b87854b58084e3f69f3af211f0f0c56f04459ed7))
+* updated readme ([f7c6287](https://github.com/LBROCHARD/racine/commit/f7c6287b911f9a85fb82d237e1a5f80bb656655d))
+
+### Bug Fixes
+
+* fixed lint errors ([287c0b6](https://github.com/LBROCHARD/racine/commit/287c0b60e5a759c62eb032e29ff90e0e8a79cadf))
+
 ## [0.4.1](https://github.com/LBROCHARD/racine/compare/0.4.0...0.4.1) (2025-08-12)
 
 ### Bug Fixes
