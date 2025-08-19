@@ -1,62 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="19" failures="0" errors="0" time="9.82">
-  <testsuite name="AuthService" errors="0" failures="0" skipped="1" timestamp="2025-08-12T11:13:14" time="8.745" tests="1">
-    <testcase classname="AuthService should be defined" name="AuthService should be defined" time="0">
-      <skipped/>
+<testsuites name="jest tests" tests="19" failures="1" errors="0" time="16.318">
+  <testsuite name="AppController" errors="0" failures="1" skipped="0" timestamp="2025-08-19T17:44:32" time="14.731" tests="1">
+    <testcase classname="AppController root should return a Hello World" name="AppController root should return a Hello World" time="0.196">
+      <failure>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: &quot;Racine 😎&quot;
+Received: &quot;API Ready !&quot;
+    at Object.&lt;anonymous&gt; (/home/lewis/Documents/github/racine/src/app.controller.spec.ts:19:40)
+    at Promise.then.completed (/home/lewis/Documents/github/racine/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/home/lewis/Documents/github/racine/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/home/lewis/Documents/github/racine/node_modules/jest-circus/build/run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (/home/lewis/Documents/github/racine/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/home/lewis/Documents/github/racine/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/home/lewis/Documents/github/racine/node_modules/jest-circus/build/run.js:121:9)
+    at _runTestsForDescribeBlock (/home/lewis/Documents/github/racine/node_modules/jest-circus/build/run.js:121:9)
+    at run (/home/lewis/Documents/github/racine/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/home/lewis/Documents/github/racine/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/home/lewis/Documents/github/racine/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/home/lewis/Documents/github/racine/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/home/lewis/Documents/github/racine/node_modules/jest-runner/build/runTest.js:444:34)
+    at Object.worker (/home/lewis/Documents/github/racine/node_modules/jest-runner/build/testWorker.js:106:12)</failure>
     </testcase>
   </testsuite>
-  <testsuite name="PagesService" errors="0" failures="0" skipped="1" timestamp="2025-08-12T11:13:14" time="8.903" tests="1">
-    <testcase classname="PagesService should be defined" name="PagesService should be defined" time="0">
-      <skipped/>
-    </testcase>
-  </testsuite>
-  <testsuite name="AuthController" errors="0" failures="0" skipped="1" timestamp="2025-08-12T11:13:14" time="8.939" tests="1">
-    <testcase classname="AuthController should be defined" name="AuthController should be defined" time="0">
-      <skipped/>
-    </testcase>
-  </testsuite>
-  <testsuite name="UsersService" errors="0" failures="0" skipped="1" timestamp="2025-08-12T11:13:14" time="9.029" tests="1">
+  <testsuite name="UsersService" errors="0" failures="0" skipped="1" timestamp="2025-08-19T17:44:32" time="14.957" tests="1">
     <testcase classname="UsersService should be defined" name="UsersService should be defined" time="0">
       <skipped/>
     </testcase>
   </testsuite>
-  <testsuite name="AppController" errors="0" failures="0" skipped="0" timestamp="2025-08-12T11:13:22" time="0.307" tests="1">
-    <testcase classname="AppController root should return a Hello World" name="AppController root should return a Hello World" time="0.031">
+  <testsuite name="AuthService" errors="0" failures="0" skipped="1" timestamp="2025-08-19T17:44:32" time="15.135" tests="1">
+    <testcase classname="AuthService should be defined" name="AuthService should be defined" time="0">
+      <skipped/>
     </testcase>
   </testsuite>
-  <testsuite name="PagesController" errors="0" failures="0" skipped="1" timestamp="2025-08-12T11:13:14" time="9.067" tests="1">
+  <testsuite name="AuthController" errors="0" failures="0" skipped="1" timestamp="2025-08-19T17:44:32" time="15.207" tests="1">
+    <testcase classname="AuthController should be defined" name="AuthController should be defined" time="0">
+      <skipped/>
+    </testcase>
+  </testsuite>
+  <testsuite name="GroupService" errors="0" failures="0" skipped="0" timestamp="2025-08-19T17:44:32" time="15.366" tests="9">
+    <testcase classname="GroupService should be defined" name="GroupService should be defined" time="0.034">
+    </testcase>
+    <testcase classname="GroupService getGroupFromId should return the correct group" name="GroupService getGroupFromId should return the correct group" time="0.009">
+    </testcase>
+    <testcase classname="GroupService getGroupFromId should return null if group not found" name="GroupService getGroupFromId should return null if group not found" time="0.005">
+    </testcase>
+    <testcase classname="GroupService getAllGroupFromUserId should return all groups for a given user ID" name="GroupService getAllGroupFromUserId should return all groups for a given user ID" time="0.005">
+    </testcase>
+    <testcase classname="GroupService getAllGroupFromUserId should return an empty array if no groups found for user" name="GroupService getAllGroupFromUserId should return an empty array if no groups found for user" time="0.006">
+    </testcase>
+    <testcase classname="GroupService createGroup should create and return a new group" name="GroupService createGroup should create and return a new group" time="0.009">
+    </testcase>
+    <testcase classname="GroupService deleteGroupFromId should delete the correct group and return the deleted group" name="GroupService deleteGroupFromId should delete the correct group and return the deleted group" time="0.005">
+    </testcase>
+    <testcase classname="GroupService deleteGroupFromId should throw HttpException if group is not found" name="GroupService deleteGroupFromId should throw HttpException if group is not found" time="0.031">
+    </testcase>
+    <testcase classname="GroupService deleteGroupFromId should throw HttpException if user is not found" name="GroupService deleteGroupFromId should throw HttpException if user is not found" time="0.015">
+    </testcase>
+  </testsuite>
+  <testsuite name="GroupController" errors="0" failures="0" skipped="0" timestamp="2025-08-19T17:44:32" time="15.423" tests="4">
+    <testcase classname="GroupController should be defined" name="GroupController should be defined" time="0.038">
+    </testcase>
+    <testcase classname="GroupController should call getMyGroups with the right id when using GET on /Group" name="GroupController should call getMyGroups with the right id when using GET on /Group" time="0.009">
+    </testcase>
+    <testcase classname="GroupController should call createGroup with the right id and info when using POST on /Group" name="GroupController should call createGroup with the right id and info when using POST on /Group" time="0.006">
+    </testcase>
+    <testcase classname="GroupController should call deleteGroup using POST on /Group" name="GroupController should call deleteGroup using POST on /Group" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="PagesController" errors="0" failures="0" skipped="1" timestamp="2025-08-19T17:44:32" time="15.632" tests="1">
     <testcase classname="PagesController should be defined" name="PagesController should be defined" time="0">
       <skipped/>
     </testcase>
   </testsuite>
-  <testsuite name="GroupController" errors="0" failures="0" skipped="0" timestamp="2025-08-12T11:13:14" time="9.34" tests="4">
-    <testcase classname="GroupController should be defined" name="GroupController should be defined" time="0.021">
-    </testcase>
-    <testcase classname="GroupController should call getMyGroups with the right id when using GET on /Group" name="GroupController should call getMyGroups with the right id when using GET on /Group" time="0.004">
-    </testcase>
-    <testcase classname="GroupController should call createGroup with the right id and info when using POST on /Group" name="GroupController should call createGroup with the right id and info when using POST on /Group" time="0.002">
-    </testcase>
-    <testcase classname="GroupController should call deleteGroup using POST on /Group" name="GroupController should call deleteGroup using POST on /Group" time="0.002">
-    </testcase>
-  </testsuite>
-  <testsuite name="GroupService" errors="0" failures="0" skipped="0" timestamp="2025-08-12T11:13:14" time="9.383" tests="9">
-    <testcase classname="GroupService should be defined" name="GroupService should be defined" time="0.018">
-    </testcase>
-    <testcase classname="GroupService getGroupFromId should return the correct group" name="GroupService getGroupFromId should return the correct group" time="0.004">
-    </testcase>
-    <testcase classname="GroupService getGroupFromId should return null if group not found" name="GroupService getGroupFromId should return null if group not found" time="0.003">
-    </testcase>
-    <testcase classname="GroupService getAllGroupFromUserId should return all groups for a given user ID" name="GroupService getAllGroupFromUserId should return all groups for a given user ID" time="0.004">
-    </testcase>
-    <testcase classname="GroupService getAllGroupFromUserId should return an empty array if no groups found for user" name="GroupService getAllGroupFromUserId should return an empty array if no groups found for user" time="0.004">
-    </testcase>
-    <testcase classname="GroupService createGroup should create and return a new group" name="GroupService createGroup should create and return a new group" time="0.004">
-    </testcase>
-    <testcase classname="GroupService deleteGroupFromId should delete the correct group and return the deleted group" name="GroupService deleteGroupFromId should delete the correct group and return the deleted group" time="0.003">
-    </testcase>
-    <testcase classname="GroupService deleteGroupFromId should throw HttpException if group is not found" name="GroupService deleteGroupFromId should throw HttpException if group is not found" time="0.016">
-    </testcase>
-    <testcase classname="GroupService deleteGroupFromId should throw HttpException if user is not found" name="GroupService deleteGroupFromId should throw HttpException if user is not found" time="0.004">
+  <testsuite name="PagesService" errors="0" failures="0" skipped="1" timestamp="2025-08-19T17:44:47" time="1.018" tests="1">
+    <testcase classname="PagesService should be defined" name="PagesService should be defined" time="0">
+      <skipped/>
     </testcase>
   </testsuite>
 </testsuites>
