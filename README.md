@@ -1,73 +1,78 @@
+# Super Notes Project
 
-## Description
+The Super Notes project (formally : Échalote) is a collaborative note taking application using the Markdown format.
+This repository (formally : Racine) is the Backend part of the project it's an API serving informations to the Frontend.
 
-Racine is the backend for Echalote.
-It's a simple API made with :
+
+## Features 
+
+The API as multiples features :
+
+- CRUD for users
+- CRUD for groups
+- CRUD for group members
+- CRUD for pages
+- all routes are defended with an authentification guard
+
+## Technologies  
+
 - Nest.js
 - Prisma (ORM)
-- PostgreSQL
+- Jest
+- PostgreSQL (Database)
+- Docker (Database)
 
+## How to run
 
-## Project setup
+After cloning the projet and installing the dependancies with `npm i` you can run the project using the following commands : 
 
-```bash
-$ npm install
-```
-
-
-## Compile and run the project
-
-To start the database container :
+First, run the database with this command : 
 
 ```bash 
 $ docker compose up
 ```
 
-To start the API :
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run dev
-
-# production mode
-$ npm run start:prod
-```
-
-
-## Database management with prisma 
-
-To generate the prisma client :
+After each modification of the prisma schema or after setup you will need to launch the folowing commands to generate the prisma client :
 
 ```bash
 $ npx prisma generate
-``` 
-
-To apply migrations :
-
-```bash
 $ npx prisma migrate dev
 ``` 
 
-If in need to reset the database :
+Then, you can launch the project : 
 
 ```bash
-$ npx prisma reset
-``` 
-
-
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+$ npm run dev
 ```
+
+For the project to work, you will need to set the following .env variables :
+
+- DATABASE_URL : the URL to the database
+- POSTGRES_DB : the name that will be used in the docker compose file for the database
+- POSTGRES_USER : the name that will be used in the docker compose file for the admin user
+- POSTGRES_PASSWORD : the password that will be used in the docker compose file for the admin
+- FRONT_URL : the URL to the frontend to allow CORS
+- JWT_SECRET_KEY : the key you will use to hash passwords
+
+
+## Run tests and Linter
+
+You can check the project comformity by launching tests or the Linter using the following commands :
+
+Run tests :
+
+```bash
+$ npm run test
+```
+
+Run Linter :
+
+```bash
+$ npm run lint
+```
+
+## Author 
+
+Developped by Louis Brochard, in the context of a school project.
+
 
