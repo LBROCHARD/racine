@@ -1,18 +1,18 @@
 # Super Notes Project
 
 The Super Notes project (formally : Échalote) is a collaborative note taking application using the Markdown format.
-This repository (formally : Racine) is the Backend part of the project it's an API serving informations to the Frontend.
+This repository (formally : Racine) is the Backend part of the project it's an API serving information to the Frontend.
 
 
 ## Features 
 
-The API as multiples features :
+The API has multiple features :
 
 - CRUD for users
 - CRUD for groups
 - CRUD for group members
 - CRUD for pages
-- all routes are defended with an authentification guard
+- all routes are defended with an authentication guard
 
 ## Technologies  
 
@@ -24,7 +24,7 @@ The API as multiples features :
 
 ## How to run
 
-After cloning the projet and installing the dependancies with `npm i` you can run the project using the following commands : 
+After cloning the project and installing the dependencies with `npm i` you can run the project using the following commands : 
 
 First, run the database with this command : 
 
@@ -32,7 +32,7 @@ First, run the database with this command :
 $ docker compose up
 ```
 
-After each modification of the prisma schema or after setup you will need to launch the folowing commands to generate the prisma client :
+After each modification of the prisma schema or after setup you will need to launch the following commands to generate the prisma client :
 
 ```bash
 $ npx prisma generate
@@ -57,7 +57,7 @@ For the project to work, you will need to set the following .env variables :
 
 ## Run tests and Linter
 
-You can check the project comformity by launching tests or the Linter using the following commands :
+You can check the project conformity by launching tests or the Linter using the following commands :
 
 Run tests :
 
