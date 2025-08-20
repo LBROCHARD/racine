@@ -68,16 +68,16 @@ export class AuthService {
 
     // Before creating a user, auto create a first group with a fist page
     const group = await this.groupService.createGroup(user.id, {
-      groupName: "Welcome group",
-      groupColor: "#6CAB77"
-    })
+      groupName: 'Welcome group',
+      groupColor: '#6CAB77',
+    });
 
     const page = await this.pagesService.createPage(user.id, {
       groupId: group.id,
-      pageName: "Welcome Page",
-      pageColor: "2E4580",
-      tags: "default_page tutorial",
-    })
+      pageName: 'Welcome Page',
+      pageColor: '2E4580',
+      tags: 'default_page tutorial',
+    });
 
     await this.pagesService.updatePageContent(user.id, {
       groupId: group.id,
@@ -113,7 +113,7 @@ export class AuthService {
   ### Tips : You can edit a page by clicking the "Edit Mode" button! 
 
 `,
-    })
+    });
 
     return user;
   }

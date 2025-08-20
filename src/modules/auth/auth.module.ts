@@ -4,7 +4,6 @@ import { AuthService } from './auth.service';
 import { UsersModule } from '../users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { GroupService } from '../group/group.service';
 import { GroupModule } from '../group/group.module';
 import { PagesModule } from '../pages/pages.module';
 
