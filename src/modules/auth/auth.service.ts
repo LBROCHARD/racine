@@ -88,7 +88,7 @@ export class AuthService {
 
   ## What is this?
 
-  Super Notes is a collaborative note-taking application using the Markdown format.
+  **Super Notes** is a collaborative note-taking application using the Markdown format.
 
   ## What can it do?
 
@@ -103,6 +103,7 @@ export class AuthService {
   - remove members from a group
   - create pages with a title, a background color and tags
   - modify and delete pages
+  - use the search bar to sort pages from titles *and* tags
   - modify the content of a page with a Markdown text editor
   - read the page content formatted from Markdown into HTML
 
