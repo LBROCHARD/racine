@@ -76,9 +76,8 @@ export class GroupService {
     });
 
     // Delete all pages and GroupPages from this group
-    await this.prisma.groupPage.deleteMany({where: {groupId: group.id}});
-    await this.prisma.page.deleteMany({where: {groupId: group.id}});
-
+    await this.prisma.groupPage.deleteMany({ where: { groupId: group.id } });
+    await this.prisma.page.deleteMany({ where: { groupId: group.id } });
 
     // Delete the group
     return await this.prisma.group.delete({ where: { id: groupId } });
