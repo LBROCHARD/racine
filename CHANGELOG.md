@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.0](https://github.com/LBROCHARD/racine/compare/1.0.0...1.1.0) (2025-08-21)
+
+### Features
+
+* default page ([4f3439a](https://github.com/LBROCHARD/racine/commit/4f3439a1bc5b1b35dd7283fe321ff14725fb79c6))
+* updated the guard to throw errors 498 ([563a80b](https://github.com/LBROCHARD/racine/commit/563a80ba0d8af8852809789e31dd9e36412b2f28))
+
+### Bug Fixes
+
+* fixed default text and delete group errors ([6b2f1a3](https://github.com/LBROCHARD/racine/commit/6b2f1a3ec35508e9a0d36a7c47141a0532c50556))
+* fixed lint error and test error ([f084005](https://github.com/LBROCHARD/racine/commit/f084005264eb3e72738e42ab548245a2ec2f6a7a))
+* fixed linter error ([8f2d133](https://github.com/LBROCHARD/racine/commit/8f2d133c34ae55b8e9555d218c2e231cf63a45a0))
+* fixed test errors ([8f23951](https://github.com/LBROCHARD/racine/commit/8f2395152c46e9eeaaeb0847d05d9cc61ba254ad))
+
 ## [1.0.0](https://github.com/LBROCHARD/racine/compare/0.5.0...1.0.0) (2025-08-19)
 
 ### Bug Fixes
