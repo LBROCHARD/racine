@@ -23,6 +23,12 @@ describe('GroupService', () => {
       create: jest.fn(),
       delete: jest.fn(),
     },
+    groupPage: {
+      deleteMany: jest.fn(),
+    },
+    page: {
+      deleteMany: jest.fn(),
+    },
     groupMember: {
       findUnique: jest.fn(),
       findMany: jest.fn(),
